@@ -1,48 +1,26 @@
 import 'package:flutter/material.dart';
+import 'package:preferenciasusuarioapp/src/shared_prefs/user_prefs.dart';
+import 'package:preferenciasusuarioapp/src/widgets/menu_widget.dart';
 
 class HomePage extends StatelessWidget {
   static final String routeName = 'home';
+  final prefs = new UserPreferences();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text('Preferencias de Usuario'),
       ),
-      drawer: _crearMenu(),
+      drawer: MenuWidget(),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
-          Text('Color Secundario'),
+          Text('Color Secundario: ${prefs.color}'),
           Divider(),
-          Text('Genero'),
+          Text('Genero: ${prefs.genero}'),
           Divider(),
-          Text('Nombre usuario'),
+          Text('Nombre: ${prefs.name}'),
           Divider()
-        ],
-      ),
-    );
-  }
-
-  Drawer _crearMenu() {
-    return Drawer(
-      child: ListView(
-        padding: EdgeInsets.zero,
-        children: <Widget>[
-          DrawerHeader(
-            child: Container(),
-            decoration: BoxDecoration(
-              image: DecorationImage(
-                  image: AssetImage('assets/menu-img.jpg'), fit: BoxFit.cover),
-            ),
-          ),
-          ListTile(
-            leading: Icon(
-              Icons.pages,
-              color: Colors.blue,
-            ),
-            title: Text('People'),
-            onTap: () {},
-          ),
         ],
       ),
     );
