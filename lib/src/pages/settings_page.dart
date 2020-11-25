@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:preferenciasusuarioapp/src/shared_prefs/user_prefs.dart';
 import 'package:preferenciasusuarioapp/src/widgets/menu_widget.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 class SettingsPage extends StatefulWidget {
   static final String routeName = 'settings';
@@ -13,7 +12,6 @@ class SettingsPage extends StatefulWidget {
 class _SettingsPageState extends State<SettingsPage> {
   bool _colorSecundario = true;
   int _genero = 1;
-  String _name = 'Pedro';
   TextEditingController _nameController;
 
   final prefs = new UserPreferences();
@@ -21,14 +19,10 @@ class _SettingsPageState extends State<SettingsPage> {
   @override
   void initState() {
     super.initState();
-    _loadPreferences();
-  }
-
-  _loadPreferences() async {
     _genero = prefs.genero;
     _nameController = new TextEditingController(text: prefs.name);
     _colorSecundario = prefs.color;
-    setState(() {});
+    prefs.routeName = SettingsPage.routeName;
   }
 
   _setSelectedRadio(int value) async {
@@ -54,6 +48,7 @@ class _SettingsPageState extends State<SettingsPage> {
     return Scaffold(
       appBar: AppBar(
         title: Text('Ajustes'),
+        backgroundColor: (prefs.color) ? Colors.teal : Colors.blue,
       ),
       drawer: MenuWidget(),
       body: ListView(

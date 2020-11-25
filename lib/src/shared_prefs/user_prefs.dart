@@ -44,4 +44,12 @@ class UserPreferences {
   set color(bool value) {
     _prefs.setBool('color', value);
   }
+
+  get routeName {
+    return _prefs.getString('routeName') ?? 'home';
+  }
+
+  set routeName(String value) {
+    _prefs.setString('routeName', value);
+  }
 }

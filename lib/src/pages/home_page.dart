@@ -7,9 +7,11 @@ class HomePage extends StatelessWidget {
   final prefs = new UserPreferences();
   @override
   Widget build(BuildContext context) {
+    prefs.routeName = HomePage.routeName;
     return Scaffold(
       appBar: AppBar(
         title: Text('Preferencias de Usuario'),
+        backgroundColor: (prefs.color) ? Colors.teal : Colors.blue,
       ),
       drawer: MenuWidget(),
       body: Column(
